@@ -1,0 +1,15 @@
+  .cards {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 230px);
+    justify-content: center; 
+    z-index: 1;
+    grid-auto-rows: minmax(302px, auto);
+    grid-gap: 100px;
+}
+h1{
+  margin-bottom: 100px;
+}
+body{
+  background-color: rgb(255, 245, 255);
+}
