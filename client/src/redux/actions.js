@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function getDogs() {
   return async function (dispatch) {
-    let json = await axios.get('http://localhost:3001/dogs');
+    let json = await axios.get('/dogs');
     return dispatch({
       type: 'GET_DOGS',
       payload: json.data,
@@ -13,7 +13,7 @@ export function getDogs() {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/dogs/${id}`);
+      let json = await axios.get(`/dogs/${id}`);
       return dispatch({
         type: 'GET_DETAIL',
         payload: json.data,
@@ -26,7 +26,7 @@ export function getDetail(id) {
 
 export function postDogs(payload) {
   return async function (dispatch) {
-    const data = await axios.post('http://localhost:3001/dogs', payload);
+    const data = await axios.post('/dogs', payload);
     return data;
   };
 }
@@ -34,7 +34,7 @@ export function postDogs(payload) {
 export function dogSearchBar(name) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+      let json = await axios.get(`/dogs?name=${name}`);
       // console.log(json.data)
       if (json.data.length === 0) return alert('No existe dicha raza');
       return dispatch({
@@ -49,7 +49,7 @@ export function dogSearchBar(name) {
 
 export function getTemperament() {
   return async function (dispatch) {
-    const json = await axios.get('http://localhost:3001/temperament');
+    const json = await axios.get('/temperament');
     return dispatch({
       type: 'GET_TEMP',
       payload: json.data,
@@ -69,7 +69,7 @@ export function filterDogsByTemperament(payload) {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `http://localhost:3001/filter?temperament=${payload}`
+        `/filter?temperament=${payload}`
       );
       return dispatch({
         type: 'FILTER_DOGS_BY_TEMPERAMENT',
