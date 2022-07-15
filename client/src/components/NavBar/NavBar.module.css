@@ -25,17 +25,17 @@ header {
     color: rgb(54, 54, 54);
 }
 
-ul {
+.ul {
     display: flex;
     flex-direction: row;
 }
 
-li {
+.li {
     list-style-type: none;
     margin-left: 3rem;
 }
 
-li > a{
+.li > a{
     text-decoration: none;
     color: rgb(54, 54, 54);
     font-size: 0.9rem;
@@ -43,7 +43,7 @@ li > a{
 }
 
 
-li::after {
+.li::after {
     content: '';
     width: 0rem;
     height: 0.15rem;
@@ -54,6 +54,6 @@ li::after {
     transition: all 0.3s ease-in-out;
 }
 
-li:hover::after {
+.li:hover::after {
     width: 2rem;
 }

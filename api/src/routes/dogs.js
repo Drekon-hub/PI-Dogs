@@ -3,12 +3,12 @@ const { Router } = require('express');
 const { Dog, Temperament } = require('../db.js');
 
 const router = Router();
-const { getDog } = require('./controller.js');
+const { getAllDogs } = require('./controller.js');
 
 router.get('/dogs', async (req, res) => {
   const { name } = req.query;
   try {
-    const result = await getDog();
+    const result = await getAllDogs();
     // res.json(result);
     if (!name) res.json(result);
     else {
@@ -29,7 +29,7 @@ router.get('/dogs', async (req, res) => {
 router.get('/dogs/:idRaza', async (req, res) => {
   try {
     const { idRaza } = req.params;
-    const allDogs = await getDog();
+    const allDogs = await getAllDogs();
     if (!idRaza) {
       res.status(404).json("Couldn't find the name on DBase");
     } else {
