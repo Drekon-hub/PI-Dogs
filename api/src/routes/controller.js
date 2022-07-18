@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Temperament, Dog } = require("../db");
+const { Temperament, Dog } = require('../db');
 const { API_KEY } = process.env;
 const URL = `https://api.thedogapi.com/v1/breeds?${API_KEY}`;
 const getDog = async () => {

@@ -47,11 +47,14 @@ export default function Home() {
       setCurrentPage(currentPage + 1);
   };
 
-  function handleReload(e) {
-    e.preventDefault();
-    dispatch(getDogs());
-    alert('Breed are Reload');
+  function handleReload() {
+    window.location.href = window.location.href;
   }
+  // function handleReload(e) {
+  //   e.preventDefault();
+  //   dispatch(getDogs());
+  //   alert('Breed are Reload');
+  // }
   const [, setOrden] = useState('');
 
   function handleOrder(e) {
@@ -75,53 +78,56 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      <div className='img-lindo'>
-        <h1 className='title'>AGUANTEN LOS BULL TERRIERES PERO EN EL HOME</h1>
-        <div className='searchBar'>
+      <div className="img-lindo">
+        <h1 className="title">AGUANTEN LOS BULL TERRIERES PERO EN EL HOME</h1>
+        <div className="searchBar">
           <SearchBar firstPage={firstPage} />
         </div>
         <Link to={'/dogs'}>
-          <button className='btn-create'>Create dog</button>
+          <button className="btn-create">Create dog</button>
         </Link>
       </div>
       <img
-        src='https://upload.wikimedia.org/wikipedia/commons/a/a2/Crystal_Project_Reload.png'
-        width='70px'
-        height='70px'
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Crystal_Project_Reload.png"
+        width="70px"
+        height="70px"
         onClick={(e) => handleReload(e)}
+        alt=""
       />
-      <Filter setCurrentPage={setCurrentPage} />
-      <div>
-        <h2>Weitght Sort</h2>
-        <select
-          onChange={(e) => {
-            handleOrderByWeight(e);
-          }}
-        >
-          <option defaultValue value='all' hidden>
-            Order
-          </option>
-          <option value='asc'>Heaviest to Lightest</option>
-          <option value='desc'>Lightest to Heaviest</option>
-        </select>
-      </div>
-      <div>
-        <h2>Alphabetical Sort</h2>
-        <select onChange={(e) => handleOrder(e)}>
-          <option value='selected' onClick={(e) => handleReload(e)}>
-            All
-          </option>
-          <option value='asc'>Asc A-Z</option>
-          <option value='des'>Desc Z-A</option>
-        </select>
-      </div>
-      <div>
-        <h2>Order By Created</h2>
-        <select onChange={(e) => handleFilterCreate(e)}>
-          <option value='all'>All</option>
-          <option value='api'>Existent breeds</option>
-          <option value='created'>Created breeds</option>
-        </select>
+      <div className="filtros">
+        <Filter setCurrentPage={setCurrentPage} />
+        <div>
+          <h2>Weitght Sort</h2>
+          <select
+            onChange={(e) => {
+              handleOrderByWeight(e);
+            }}
+          >
+            <option defaultValue value="all" hidden>
+              Order
+            </option>
+            <option value="asc">Heaviest to Lightest</option>
+            <option value="desc">Lightest to Heaviest</option>
+          </select>
+        </div>
+        <div>
+          <h2>Alphabetical Sort</h2>
+          <select onChange={(e) => handleOrder(e)}>
+            <option value="selected" onClick={(e) => handleReload(e)}>
+              All
+            </option>
+            <option value="asc">Asc A-Z</option>
+            <option value="des">Desc Z-A</option>
+          </select>
+        </div>
+        <div>
+          <h2>Order By Created</h2>
+          <select onChange={(e) => handleFilterCreate(e)}>
+            <option value="all">All</option>
+            <option value="api">Existent breeds</option>
+            <option value="created">Created breeds</option>
+          </select>
+        </div>
       </div>
 
       <Pagination
@@ -135,7 +141,7 @@ export default function Home() {
         nextPage={nextPage}
       />
 
-      <div className='cards'>
+      <div className="cards">
         {currentDogs?.map((dog) => {
           return (
             <div>

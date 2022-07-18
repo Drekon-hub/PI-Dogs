@@ -84,3 +84,8 @@ body {
   top: 40%;
   left: -19%;
 }
+
+.filtros{
+  display: flex;
+  justify-content: space-around;
+}
