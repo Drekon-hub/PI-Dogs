@@ -102,11 +102,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         allDogs: sortedArr,
       };
-      case 'DELETE_DOG_BY_ID':
-        return {
-          ...state,
-          allDogs: action.payload,
-        };
+
     default:
       return state;
   }

@@ -2,26 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getDetail, deleteDog } from '../../redux/actions.js';
+import { getDetail } from '../../redux/actions.js';
 import { useHistory } from 'react-router-dom';
 import styles from './DogsDetails.module.css';
 
 export default function Detail(props) {
   const dispatch = useDispatch();
 
-const dogHistory = useHistory();
+  const dogHistory = useHistory();
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
   }, [dispatch]);
 
   const theDogs = useSelector((state) => state.detail);
-
-  async function deadDog() {
-    await dispatch(deleteDog(props.match.params.id));
-    dogHistory.push('/home')
-    window.location.href = window.location.href;
-  }
 
   let temp = '';
   typeof theDogs.temperaments === 'object'
@@ -35,8 +29,6 @@ const dogHistory = useHistory();
   return (
     <div>
       <section className={styles.modal}>
-        <button onClick={(id) => deadDog(id)}>x</button>
-
         {theDogs.name ? (
           <div className={styles.modal_container}>
             <Link to={'/home'}>

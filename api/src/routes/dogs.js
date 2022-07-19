@@ -41,16 +41,6 @@ router.get('/dogs/:idRaza', async (req, res) => {
   }
 });
 
-router.delete('/dogs/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    const dog = await Dog.findByPk(id);
-    dog.destroy();
-    res.status(200).send('dog destroy');
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 router.post('/dogs', async (req, res) => {
   let {
