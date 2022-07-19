@@ -76,32 +76,37 @@ function rootReducer(state = initialState, action) {
       };
     case 'ORDER':
       const sortedArr =
-      action.payload === "asc"
-        ? state.dogs.sort((a, b) => {
-            if (a.name > b.name) {
-              return 1;
-            }
-            if (a.name > b.name) {
-              return -1;
-            }
-            return 0;
-          })
-        : action.payload === "des"
-        ? state.dogs.sort((a, b) => {
-            if (a.name < b.name) {
-              return 1;
-            }
-            if (a.name < b.name) {
-              return -1;
-            }
-            return 0;
-          })
-        : state.dogs;
+        action.payload === 'asc'
+          ? state.dogs.sort((a, b) => {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (a.name > b.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : action.payload === 'des'
+          ? state.dogs.sort((a, b) => {
+              if (a.name < b.name) {
+                return 1;
+              }
+              if (a.name < b.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.dogs;
 
       return {
         ...state,
         allDogs: sortedArr,
       };
+      case 'DELETE_DOG_BY_ID':
+        return {
+          ...state,
+          allDogs: action.payload,
+        };
     default:
       return state;
   }

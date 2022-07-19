@@ -109,3 +109,18 @@ export function filterTemperament(payload) {
       }
   }
 }
+
+export function deleteDog(id) {
+  return async function(dispatch){
+    try {
+      const json = await axios.delete(`/dogs/${id}`);
+      // console.log(json.data)
+      return dispatch({
+        type: 'DELETE_DOG_BY_ID',
+        id: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

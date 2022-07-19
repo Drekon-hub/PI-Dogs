@@ -9,11 +9,47 @@ export default function Form() {
   function validate(input) {
     let errors = {};
     if (!input.name) {
-      errors.name = 'asd';
+      errors.name = '🔴📋Enter a Name to the breed of dogs';
+    } else if (!/^[A-Za-z.\n -]+$/.test(input.name)) {
+      errors.name = '🔴The name must contain only letters';
     }
+    if (!input.height_min) {
+      errors.height_min = "🔴Enter a value for the minimum height of the breed ";
+    }
+    if (!input.height_min < 0) {
+      errors.height_min = '🔴Enter real value fo the minimum height of the breed';
+    }
+    if (parseInt(input.height_min) <= 15) {
+      errors.height_min = '🔴The minimum size must be greater than 15 cm';
+    }
+    if (!input.height_max > 999) {
+      errors.height_max = '🔴Enter a  real value for the maximum weight of the breed';
+    }
+    if (!input.weight_min) {
+      errors.weight_min = '🔴Enter a value for the minimum weight of the breed';
+    }
+    if (!input.weight_min < 0) {
+      errors.weight_min = '🔴Enter a real value minimum weight of the breed';
+    }
+    if (!input.weight_max > 999) {
+      errors.weight_max = '🔴Enter a  real value for the maximum weight of the breed';
+    }
+    if (input.life_span > 100) {
+      errors.life_span = 'The life spon must be less than 100 years';
+    }
+    if (typeof input.image !== 'string') {
+      errors.image = 'the imageUrl link is too big';
+    }
+    if (parseInt(input.image) > 250) {
+      errors.image = 'the imageUrl link is too big';
+    }
+    if (!input.temperament) {
+      errors.temperament = 'a';
+    }
+
     return errors;
   }
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTemperament());
@@ -23,8 +59,8 @@ export default function Form() {
     dispatch(getDogs());
   }, [dispatch]);
   const temperament = useSelector((state) => state.temperaments);
-  console.log(getTemperament())
-  
+  console.log(getTemperament());
+
   const [input, setInput] = useState({
     name: '',
     height_min: '',
@@ -112,7 +148,7 @@ export default function Form() {
     <section>
       <section>
         <div>
-          <Link to='/home'>
+          <Link to="/home">
             <button> Volver</button>
           </Link>
         </div>
@@ -123,11 +159,11 @@ export default function Form() {
           <div>
             <label>Name:</label>
             <input
-              placeholder='Dog breed'
+              placeholder="Dog breed"
               onChange={(e) => handleChange(e)}
-              type='text'
+              type="text"
               value={input.name}
-              name='name'
+              name="name"
             />
             {errors.name && <p>{errors.name}</p>}
           </div>
@@ -135,75 +171,82 @@ export default function Form() {
             <label>Height Min:</label>
             <input
               onChange={(e) => handleChange(e)}
-              type='range'
-              max='50'
-              min='1'
+              placeholder="Height Min"
+              type="number"
+              max="50"
+              min="1"
               value={input.height_min}
-              name='height_min'
+              name="height_min"
             />
+            {errors.height_min && <p>{errors.height_min}</p>}
           </div>
           <div>
             <label>Height Max:</label>
             <input
               onChange={(e) => handleChange(e)}
-              type='range'
-              max='50'
-              min='1'
+              placeholder="Height Max"
+              type="number"
+              max="50"
+              min="1"
               value={input.height_max}
-              name='height_max'
+              name="height_max"
             />
+            {errors.height_max && <p>{errors.height_max}</p>}
           </div>
           <div>
             <label>Weight Min:</label>
             <input
               onChange={(e) => handleChange(e)}
-              type='range'
-              max='50'
-              min='1'
+              placeholder="Weight Min"
+              type="number"
+              max="50"
+              min="1"
               value={input.weight_min}
-              name='weight_min'
+              name="weight_min"
             />
+            {errors.weight_min && <p>{errors.weight_min}</p>}
           </div>
           <div>
             <label>Weight Max:</label>
             <input
               onChange={(e) => handleChange(e)}
-              type='range'
-              max='50'
-              min='1'
+              placeholder="Weight Max"
+              type="number"
+              max="50"
+              min="1"
               value={input.weight_max}
-              name='weight_max'
+              name="weight_max"
             />
+            {errors.weight_max && <p>{errors.weight_max}</p>}
           </div>
           <div>
             <label>Life Span:</label>
             <input
-              placeholder='Life Span ❤'
+              placeholder="Life Span ❤"
               onChange={(e) => handleChange(e)}
-              type='number'
-              max='30'
-              min='1'
+              type="number"
+              max="30"
+              min="1"
               value={input.life_span}
-              name='life_span'
+              name="life_span"
             />
+            {errors.life_span && <p>{errors.life_span}</p>}
           </div>
           <div>
             <label> Image: </label>
             <input
-              placeholder='URL'
+              placeholder="URL"
               onChange={(e) => handleChange(e)}
-              type='text'
+              type="text"
               value={input.image}
-              name='image'
+              name="image"
             />
+            {errors.image && <p>{errors.image}</p>}
           </div>
           <div>
             <div>
               <label>Temperamentos</label>
-              <select
-                onChange={(e) => handleSelect(e)}
-               
-              >
+              <select onChange={(e) => handleSelect(e)}>
                 {temperament?.map((temp) => {
                   return (
                     <option key={temp.name} name={temp.name}>
@@ -212,9 +255,10 @@ export default function Form() {
                   );
                 })}
               </select>
-              <div >
+              <div>
+                {errors.temperament && <p>{errors.temperament}</p>}
                 {input.temperament.map((el) => (
-                  <div key={el} >
+                  <div key={el}>
                     <p>{el}</p>
                     <button onClick={() => handleDelete(el)}>x</button>
                   </div>
@@ -229,11 +273,11 @@ export default function Form() {
             !input.life_span ||
             !input.image ||
             !input.temperament.length ? (
-              <button disabled type='submit'>
+              <button disabled type="submit">
                 Crear Actividad!
               </button>
             ) : (
-              <button type='submit'>Crear Actividad!</button>
+              <button type="submit">Crear Actividad!</button>
             )}
           </div>
         </form>

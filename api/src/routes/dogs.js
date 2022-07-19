@@ -41,6 +41,17 @@ router.get('/dogs/:idRaza', async (req, res) => {
   }
 });
 
+router.delete('/dogs/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const dog = await Dog.findByPk(id);
+    dog.destroy();
+    res.status(200).send('dog destroy');
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post('/dogs', async (req, res) => {
   let {
     name,
@@ -83,10 +94,10 @@ router.post('/dogs', async (req, res) => {
       image: image || 'https://dog.ceo/api/breeds/image/random',
     });
     // temperament.map(async (el) => {
-      const findTemp = await Temperament.findAll({
-        where: { name: temperament },
-      });
-      createDog.addTemperament(findTemp);
+    const findTemp = await Temperament.findAll({
+      where: { name: temperament },
+    });
+    createDog.addTemperament(findTemp);
     // });
     res.status(200).send(createDog);
   } else {

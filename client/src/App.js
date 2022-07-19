@@ -8,11 +8,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className='App'>
-      <Route exact path='/' component={LandingPage} />
-      <Route path='/home' component={Home} />
-      <Route path='/home/:id' component={DogsDetails} />
-      <Route exact path='/dogs' component={Form} />
+    <div className="App">
+      <Route exact path="/" component={LandingPage} />
+      <Route path="/home" component={Home} />
+      <Route path="/home/:id" component={DogsDetails} />
+      <Route exact path="/dogs" component={Form} />
+      {/* <Route exact path='/dogs/:id' component={Form} /> */}
     </div>
   );
 }

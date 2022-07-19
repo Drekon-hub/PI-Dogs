@@ -87,6 +87,7 @@ export default function Home() {
           <button className="btn-create">Create dog</button>
         </Link>
       </div>
+      {/* reload */}
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Crystal_Project_Reload.png"
         width="70px"
@@ -94,6 +95,7 @@ export default function Home() {
         onClick={(e) => handleReload(e)}
         alt=""
       />
+      {/* filtros */}
       <div className="filtros">
         <Filter setCurrentPage={setCurrentPage} />
         <div>
