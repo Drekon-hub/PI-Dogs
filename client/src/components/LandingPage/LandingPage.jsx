@@ -8,7 +8,7 @@ export default function a(){
             <h1>AGUANTEN LOS BULL TERRIERES</h1>
             
             <Link to={'/home'}>
-                <button>Entrar</button>
+                <button>Go Home</button>
             </Link>
         </div>
     )

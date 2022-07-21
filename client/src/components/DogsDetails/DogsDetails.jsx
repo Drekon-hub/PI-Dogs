@@ -25,7 +25,7 @@ export default function Detail(props) {
         })
         .join(', '))
     : (temp = theDogs.temperaments);
-  console.log(theDogs.temperaments);
+  // console.log(theDogs.temperaments);
   return (
     <div>
       <section className={styles.modal}>

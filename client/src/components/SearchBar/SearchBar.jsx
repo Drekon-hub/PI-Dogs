@@ -30,7 +30,7 @@ export default function SearchBar({ firstPage }) {
         
         <input placeholder='Search dog for breed' type='text' onChange={(e) => handleSearchInput(e)} className={styles.input} value={dog} />
         <button type='submit' onClick={(e) => handleSubmitButton(e)}>
-          Buscar
+          Search
         </button>
       </form>
     </div>

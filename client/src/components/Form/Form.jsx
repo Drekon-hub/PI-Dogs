@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 import { getDogs, postDogs, getTemperament } from '../../redux/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+// import styles from './Form.module.css';
+import './Form.css';
 
 export default function Form() {
   const [errors, setErrors] = useState({});
   function validate(input) {
     let errors = {};
     if (!input.name) {
-      errors.name = '🔴📋Enter a Name to the breed of dogs';
+      errors.name = '🔴Enter a Name to the breed of dogs';
     } else if (!/^[A-Za-z.\n -]+$/.test(input.name)) {
       errors.name = '🔴The name must contain only letters';
     }
     if (!input.height_min) {
-      errors.height_min = "🔴Enter a value for the minimum height of the breed ";
+      errors.height_min = '🔴Enter a value for the minimum height of the breed ';
     }
     if (!input.height_min < 0) {
       errors.height_min = '🔴Enter real value fo the minimum height of the breed';
@@ -35,13 +37,13 @@ export default function Form() {
       errors.weight_max = '🔴Enter a  real value for the maximum weight of the breed';
     }
     if (input.life_span > 100) {
-      errors.life_span = 'The life spon must be less than 100 years';
+      errors.life_span = '🔴The life spon must be less than 100 years';
     }
     if (typeof input.image !== 'string') {
-      errors.image = 'the imageUrl link is too big';
+      errors.image = '🔴the imageUrl link is too big';
     }
-    if (parseInt(input.image) > 250) {
-      errors.image = 'the imageUrl link is too big';
+    if (input.image.length > 250) {
+      errors.image = '🔴the imageUrl link is too big';
     }
     if (!input.temperament) {
       errors.temperament = 'a';
@@ -59,7 +61,7 @@ export default function Form() {
     dispatch(getDogs());
   }, [dispatch]);
   const temperament = useSelector((state) => state.temperaments);
-  console.log(getTemperament());
+  // console.log(getTemperament());
 
   const [input, setInput] = useState({
     name: '',
@@ -117,7 +119,7 @@ export default function Form() {
       dispatch(postDogs(input));
       // dispatch(axios.post('/activities'))
       // console.log(axios.post('/activities',(input)))
-      alert('Actividad creada');
+      alert('successfully bred dog');
       setInput({
         name: '',
         height_min: '',
@@ -149,15 +151,14 @@ export default function Form() {
       <section>
         <div>
           <Link to="/home">
-            <button> Volver</button>
+            <button> Back</button>
           </Link>
         </div>
       </section>
-
-      <section>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div>
-            <label>Name:</label>
+      <form onSubmit={(e) => handleSubmit(e)} className="form-style-7">
+        <ul>
+          <li>
+            <label for="name">Name</label>
             <input
               placeholder="Dog breed"
               onChange={(e) => handleChange(e)}
@@ -165,10 +166,11 @@ export default function Form() {
               value={input.name}
               name="name"
             />
-            {errors.name && <p>{errors.name}</p>}
-          </div>
-          <div>
-            <label>Height Min:</label>
+            {errors.name && <span>{errors.name}</span>}
+            <span>Enter breed name here</span>
+          </li>
+          <li>
+            <label>Height Min</label>
             <input
               onChange={(e) => handleChange(e)}
               placeholder="Height Min"
@@ -178,10 +180,11 @@ export default function Form() {
               value={input.height_min}
               name="height_min"
             />
-            {errors.height_min && <p>{errors.height_min}</p>}
-          </div>
-          <div>
-            <label>Height Max:</label>
+            {errors.height_min && <span>{errors.height_min}</span>}
+            <span>Enter a valid email address</span>
+          </li>
+          <li>
+            <label>Height Max</label>
             <input
               onChange={(e) => handleChange(e)}
               placeholder="Height Max"
@@ -191,9 +194,10 @@ export default function Form() {
               value={input.height_max}
               name="height_max"
             />
-            {errors.height_max && <p>{errors.height_max}</p>}
-          </div>
-          <div>
+            {errors.height_max && <span>{errors.height_max}</span>}
+            <span>Your website address</span>
+          </li>
+          <li>
             <label>Weight Min:</label>
             <input
               onChange={(e) => handleChange(e)}
@@ -204,9 +208,10 @@ export default function Form() {
               value={input.weight_min}
               name="weight_min"
             />
-            {errors.weight_min && <p>{errors.weight_min}</p>}
-          </div>
-          <div>
+            {errors.weight_min && <span>{errors.weight_min}</span>}
+            <span>Say something about yourself</span>
+          </li>
+          <li>
             <label>Weight Max:</label>
             <input
               onChange={(e) => handleChange(e)}
@@ -217,9 +222,10 @@ export default function Form() {
               value={input.weight_max}
               name="weight_max"
             />
-            {errors.weight_max && <p>{errors.weight_max}</p>}
-          </div>
-          <div>
+            {errors.weight_max && <span>{errors.weight_max}</span>}
+            <span>Say something about yourself</span>
+          </li>
+          <li>
             <label>Life Span:</label>
             <input
               placeholder="Life Span ❤"
@@ -230,9 +236,10 @@ export default function Form() {
               value={input.life_span}
               name="life_span"
             />
-            {errors.life_span && <p>{errors.life_span}</p>}
-          </div>
-          <div>
+            {errors.life_span && <span>{errors.life_span}</span>}
+            <span>Say something about yourself</span>
+          </li>
+          <li>
             <label> Image: </label>
             <input
               placeholder="URL"
@@ -241,31 +248,32 @@ export default function Form() {
               value={input.image}
               name="image"
             />
-            {errors.image && <p>{errors.image}</p>}
-          </div>
+            {errors.image && <span>{errors.image}</span>}
+            <span>Say something about yourself</span>
+          </li>
           <div>
+            <label>Temperamentos</label>
+            <select onChange={(e) => handleSelect(e)}>
+              {temperament?.map((temp) => {
+                return (
+                  <option key={temp.name} name={temp.name}>
+                    {temp.name}
+                  </option>
+                );
+              })}
+            </select>
             <div>
-              <label>Temperamentos</label>
-              <select onChange={(e) => handleSelect(e)}>
-                {temperament?.map((temp) => {
-                  return (
-                    <option key={temp.name} name={temp.name}>
-                      {temp.name}
-                    </option>
-                  );
-                })}
-              </select>
-              <div>
-                {errors.temperament && <p>{errors.temperament}</p>}
-                {input.temperament.map((el) => (
-                  <div key={el}>
-                    <p>{el}</p>
-                    <button onClick={() => handleDelete(el)}>x</button>
-                  </div>
-                ))}
-              </div>
+              {errors.temperament && <p>{errors.temperament}</p>}
+              {input.temperament.map((el) => (
+                <div className="deleteTemperament" key={el}>
+                  <span>{el}</span>
+                  <button onClick={() => handleDelete(el)}>x</button>
+                </div>
+              ))}
             </div>
-            {!input.name ||
+          </div>
+          <li>
+          {!input.name ||
             !input.height_min ||
             !input.height_max ||
             !input.weight_min ||
@@ -274,14 +282,15 @@ export default function Form() {
             !input.image ||
             !input.temperament.length ? (
               <button disabled type="submit">
-                Crear Actividad!
+                Create!
               </button>
             ) : (
-              <button type="submit">Crear Actividad!</button>
+              <button type="submit" >Create!</button>
             )}
-          </div>
-        </form>
-      </section>
+            {/* <input type="submit" value="Send This" /> */}
+          </li>
+        </ul>
+      </form>
     </section>
   );
 }
