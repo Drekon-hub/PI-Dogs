@@ -112,7 +112,7 @@ export default function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
-      input.image &&
+      // input.image &&
       input.temperament
     ) {
       e.preventDefault();
@@ -279,7 +279,7 @@ export default function Form() {
             !input.weight_min ||
             !input.weight_max ||
             !input.life_span ||
-            !input.image ||
+            // !input.image ||
             !input.temperament.length ? (
               <button disabled type="submit">
                 Create!

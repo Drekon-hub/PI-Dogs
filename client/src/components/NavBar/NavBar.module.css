@@ -1,59 +1,62 @@
 body {
-    font-family: "Montserrat", sans-serif;
-    background-color: aliceblue;
+  font-family: 'Montserrat', sans-serif;
+  background-color: aliceblue;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem 5rem;
-    background-color: rgb(182, 111, 226);
-    /* background: linear-gradient(180deg, #6fb4fd 0%, #5caafc 100%); */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 5rem;
+  background-color: rgb(37, 37, 37);
+  /* background-color: rgb(182, 111, 226); */
+  /* background: linear-gradient(180deg, #6fb4fd 0%, #5caafc 100%); */
 }
 
 .brand a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: rgb(54, 54, 54);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(54, 54, 54);
 }
 
 .ul {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-
+.ul a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
 .li {
-    list-style-type: none;
-    margin-left: 3rem;
+  list-style-type: none;
+  margin-left: 3rem;
 }
 
-.li > a{
-    text-decoration: none;
-    color: rgb(54, 54, 54);
-    font-size: 0.9rem;
-    font-weight: 500;
+.li > a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
-
 
 .li::after {
-    content: '';
-    width: 0rem;
-    height: 0.15rem;
-    background-color:rgb(54, 54, 54);
-    display: block;
-    border-radius: 0.2rem;
-    margin: 0.2rem auto 0 auto;
-    transition: all 0.3s ease-in-out;
+  content: '';
+  width: 0rem;
+  height: 0.15rem;
+  background-color: rgb(255, 255, 255);
+  display: block;
+  border-radius: 0.2rem;
+  margin: 0.2rem auto 0 auto;
+  transition: all 0.3s ease-in-out;
 }
 
 .li:hover::after {
-    width: 2rem;
+  width: 2rem;
 }

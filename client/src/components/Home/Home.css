@@ -7,9 +7,9 @@
   grid-auto-rows: minmax(302px, auto);
   grid-gap: 80px;
 }
-h1 {
+/* h1 {
   margin-bottom: 100px;
-}
+} */
 body {
   background-image: url('../../img/a.jpg');
   /* background-color: rgb(255, 245, 255); */
