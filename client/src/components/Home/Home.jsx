@@ -14,6 +14,7 @@ import Pagination from '../Pagination/Pagination.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import Filter from '../Filter/Filter.jsx';
 import './Home.css';
+// import Spiner from '../Spiner/Spiner.jsx';
 
 export default function Home() {
   //! estos son mis hoocks------------------------------
@@ -142,7 +143,7 @@ export default function Home() {
         prevPage={prevPage}
         nextPage={nextPage}
       />
-
+      {/* <Spiner/> */}
       <div className="cards">
         {currentDogs?.map((dog) => {
           return (
