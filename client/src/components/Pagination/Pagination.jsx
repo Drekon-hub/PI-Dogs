@@ -11,8 +11,8 @@ const Pagination = ({ dogsPerPage, allDogs, pagination, currentPage,firstPage, l
     <div>
       <nav className={styles.nav}>
         <ul className={styles.container_page}>
-          <button className={styles.button} onClick={() => firstPage()}> ◄◄ </button>
-          <button className={styles.button} onClick={() => prevPage()}> ◄ </button>
+          <button className={currentPage === 1 ? styles.nose : styles.button} onClick={() => firstPage()}> ◄◄ </button>
+          <button  className={currentPage === 1 ? styles.nose : styles.button} onClick={() => prevPage()}> ◄ </button>
 
           {pageNumbers &&
             pageNumbers.map((num) => (
@@ -21,8 +21,8 @@ const Pagination = ({ dogsPerPage, allDogs, pagination, currentPage,firstPage, l
               </li>
             ))}
 
-          <button className={styles.button} onClick={() => nextPage()}> ► </button>
-          <button className={styles.button} onClick={() => lastPage()}> ►► </button>
+          <button className={currentPage === 22 ? styles.nose : styles.button} onClick={() => nextPage()}> ► </button>
+          <button className={currentPage === 22 ? styles.nose : styles.button} onClick={() => lastPage()}> ►► </button>
         </ul>
       </nav>
     </div>

@@ -74,6 +74,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         dogs: orderWeight,
       };
+
     case 'ORDER':
       const sortedArr =
         action.payload === 'asc'

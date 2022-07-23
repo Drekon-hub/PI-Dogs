@@ -92,6 +92,8 @@ export function filterWeight(payload) {
     payload,
   };
 }
+
+
 export function filterTemperament(payload) {
   return async function (dispatch) {
       try {

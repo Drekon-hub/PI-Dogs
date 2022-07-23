@@ -6,7 +6,7 @@ import {
   getDogs,
   order,
   filterDogsByCreated,
-  filterWeight,
+  filterWeight
 } from '../../redux/actions.js';
 import Card from '../DogsCards/DogsCards';
 import NavBar from '../NavBar/NavBar';

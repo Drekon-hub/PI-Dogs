@@ -60,3 +60,6 @@
   transform: translateY(0);
 }
 
+.nose{
+  display: none;
+}

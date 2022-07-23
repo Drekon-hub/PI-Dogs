@@ -10,44 +10,42 @@ export default function Form() {
   const [errors, setErrors] = useState({});
   function validate(input) {
     let errors = {};
+
     if (!input.name) {
       errors.name = '🔴Enter a Name to the breed of dogs';
-    } else if (!/^[A-Za-z.\n -]+$/.test(input.name)) {
+    } else if (!/^[A-Za-z\n -]+$/.test(input.name)) {
       errors.name = '🔴The name must contain only letters';
+    } else if (!/^[\s\S]{0,25}$/.test(input.name)) {
+      errors.name = '🔴The name of the dog can not have more than 25 characters';
     }
     if (!input.height_min) {
       errors.height_min = '🔴Enter a value for the minimum height of the breed ';
+    } else if (!/^[0-9]{1,2}?$/.test(input.height_min)) {
+      errors.height_min = '🔴Only numbers and maximum 2 characters';
     }
-    if (!input.height_min < 0) {
-      errors.height_min = '🔴Enter real value fo the minimum height of the breed';
-    }
-    if (parseInt(input.height_min) <= 15) {
-      errors.height_min = '🔴The minimum size must be greater than 15 cm';
-    }
-    if (!input.height_max > 999) {
-      errors.height_max = '🔴Enter a  real value for the maximum weight of the breed';
+    if (!input.height_max) {
+      errors.height_max = '🔴Enter a value for the minimum height of the breed ';
+    } else if (!/^[0-9]{1,2}?$/.test(input.height_max)) {
+      errors.height_max = '🔴Only numbers and maximum 2 characters';
     }
     if (!input.weight_min) {
-      errors.weight_min = '🔴Enter a value for the minimum weight of the breed';
+      errors.weight_min = '🔴Enter a value for the minimum height of the breed ';
+    } else if (!/^[0-9]{1,2}?$/.test(input.weight_min)) {
+      errors.weight_min = '🔴Only numbers and maximum 2 characters';
     }
-    if (!input.weight_min < 0) {
-      errors.weight_min = '🔴Enter a real value minimum weight of the breed';
+    if (!input.weight_max) {
+      errors.weight_max = '🔴Enter a value for the minimum height of the breed ';
+    } else if (!/^[0-9]{1,2}?$/.test(input.weight_max)) {
+      errors.weight_max = '🔴Only numbers and maximum 2 characters';
     }
-    if (!input.weight_max > 999) {
-      errors.weight_max = '🔴Enter a  real value for the maximum weight of the breed';
+    if (!input.life_span) {
+      errors.life_span = '🔴Enter a value for the minimum height of the breed ';
+    } else if (!/^[0-9]{1,2}?$/.test(input.life_span)) {
+      errors.life_span = '🔴Only numbers and maximum 2 characters';
     }
-    if (input.life_span > 100) {
-      errors.life_span = '🔴The life spon must be less than 100 years';
-    }
-    if (typeof input.image !== 'string') {
-      errors.image = '🔴the imageUrl link is too big';
-    }
-    if (input.image.length > 250) {
-      errors.image = '🔴the imageUrl link is too big';
-    }
-    if (!input.temperament) {
-      errors.temperament = 'a';
-    }
+    // if (!input.temperament) {
+    //   errors.temperament = 'a';
+    // }
 
     return errors;
   }
@@ -112,7 +110,6 @@ export default function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
-      // input.image &&
       input.temperament
     ) {
       e.preventDefault();
@@ -148,14 +145,23 @@ export default function Form() {
 
   return (
     <section>
-      <section>
-        <div>
+      <form onSubmit={(e) => handleSubmit(e)} className="form-style-7">
+        <div className="buttonBack">
           <Link to="/home">
-            <button> Back</button>
+            <button className="back">
+              <svg
+                height="16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                viewBox="0 0 1024 1024"
+              >
+                <path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path>
+              </svg>
+              <span>Back</span>
+            </button>
           </Link>
         </div>
-      </section>
-      <form onSubmit={(e) => handleSubmit(e)} className="form-style-7">
         <ul>
           <li>
             <label for="name">Name</label>
@@ -165,79 +171,70 @@ export default function Form() {
               type="text"
               value={input.name}
               name="name"
+              autoComplete="off"
             />
             {errors.name && <span>{errors.name}</span>}
-            <span>Enter breed name here</span>
+            <p>Enter breed name here</p>
           </li>
           <li>
             <label>Height Min</label>
             <input
               onChange={(e) => handleChange(e)}
               placeholder="Height Min"
-              type="number"
-              max="50"
-              min="1"
+              type="text"
               value={input.height_min}
               name="height_min"
             />
             {errors.height_min && <span>{errors.height_min}</span>}
-            <span>Enter a valid email address</span>
+            <p>Enter a valid email address</p>
           </li>
           <li>
             <label>Height Max</label>
             <input
               onChange={(e) => handleChange(e)}
               placeholder="Height Max"
-              type="number"
-              max="50"
-              min="1"
+              type="text"
               value={input.height_max}
               name="height_max"
             />
             {errors.height_max && <span>{errors.height_max}</span>}
-            <span>Your website address</span>
+            <p>Your website address</p>
           </li>
           <li>
             <label>Weight Min:</label>
             <input
               onChange={(e) => handleChange(e)}
               placeholder="Weight Min"
-              type="number"
-              max="50"
-              min="1"
+              type="text"
               value={input.weight_min}
               name="weight_min"
             />
             {errors.weight_min && <span>{errors.weight_min}</span>}
-            <span>Say something about yourself</span>
+            <p>Say something about yourself</p>
           </li>
           <li>
             <label>Weight Max:</label>
             <input
               onChange={(e) => handleChange(e)}
               placeholder="Weight Max"
-              type="number"
-              max="50"
-              min="1"
+              type="text"
               value={input.weight_max}
               name="weight_max"
             />
             {errors.weight_max && <span>{errors.weight_max}</span>}
-            <span>Say something about yourself</span>
+            <p>Say something about yourself</p>
           </li>
           <li>
             <label>Life Span:</label>
             <input
               placeholder="Life Span ❤"
               onChange={(e) => handleChange(e)}
-              type="number"
-              max="30"
-              min="1"
+              type="text"
               value={input.life_span}
               name="life_span"
             />
             {errors.life_span && <span>{errors.life_span}</span>}
-            <span>Say something about yourself</span>
+            <p>Say something about yourself</p>
           </li>
           <li>
             <label> Image: </label>
@@ -249,18 +246,23 @@ export default function Form() {
               name="image"
             />
             {errors.image && <span>{errors.image}</span>}
-            <span>Say something about yourself</span>
+            <p>Say something about yourself</p>
           </li>
           <div>
-            <label>Temperamentos</label>
+            <label>Temperaments</label>
             <select onChange={(e) => handleSelect(e)}>
-              {temperament?.map((temp) => {
-                return (
-                  <option key={temp.name} name={temp.name}>
-                    {temp.name}
-                  </option>
-                );
-              })}
+              <optgroup label="Temperaments">
+                <option disabled selected>
+                  Select An Temperaments
+                </option>
+                {temperament?.map((temp) => {
+                  return (
+                    <option key={temp.name} name={temp.name}>
+                      {temp.name}
+                    </option>
+                  );
+                })}
+              </optgroup>
             </select>
             <div>
               {errors.temperament && <p>{errors.temperament}</p>}
@@ -273,21 +275,33 @@ export default function Form() {
             </div>
           </div>
           <li>
-          {!input.name ||
+            {errors.name ||
+            errors.height_min ||
+            errors.height_max ||
+            errors.weight_min ||
+            errors.weight_max ||
+            errors.life_span ||
+            !input.name ||
             !input.height_min ||
             !input.height_max ||
             !input.weight_min ||
             !input.weight_max ||
             !input.life_span ||
-            // !input.image ||
             !input.temperament.length ? (
-              <button disabled type="submit">
-                Create!
+              // <button disabled type="submit">
+              //   Create!
+              // </button>
+              <button disabled type="submit" className="icon-btn add-btn">
+                <div className="add-icon"></div>
+                <div className="btn-txt">Crete Dog</div>
               </button>
             ) : (
-              <button type="submit" >Create!</button>
+              // <button type="submit">Create!</button>
+              <button type="submit" className="icon-btn add-btn">
+                <div className="add-icon"></div>
+                <div className="btn-txt">Crete Dog</div>
+              </button>
             )}
-            {/* <input type="submit" value="Send This" /> */}
           </li>
         </ul>
       </form>

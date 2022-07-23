@@ -29,7 +29,7 @@ export default function Detail(props) {
   return (
     <div>
       <section className={styles.modal}>
-        {theDogs.name ? (
+        {theDogs.id == props.match.params.id ? (
           <div className={styles.modal_container}>
             <Link to={'/home'}>
               <button className={styles.button}>
