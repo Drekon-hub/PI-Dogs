@@ -256,7 +256,13 @@ export default function Form() {
               value={input.image}
               name="image"
             />
-            {errors.image && <span>{errors.image}</span>}
+            <img
+              src={input.image}
+              alt="Not found"
+              width="300px"
+              height="200px"
+            />
+            {/* {errors.image && <span>{errors.image}</span>} */}
             <p>
               Enter here an image by url otherwise one will be assigned by
               default
