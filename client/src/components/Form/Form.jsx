@@ -12,53 +12,46 @@ export default function Form() {
     let errors = {};
 
     if (!input.name) {
-      errors.name = "🔴Enter a Name to the breed of dogs";
+      errors.name = '🔴Enter a Name to the breed of dogs';
     } else if (!/^[A-Za-z\n -]+$/.test(input.name)) {
-      errors.name = "🔴The name must contain only letters";
+      errors.name = '🔴The name must contain only letters';
     } else if (!/^[\s\S]{0,25}$/.test(input.name)) {
-      errors.name =
-        "🔴The name of the dog can not have more than 25 characters";
+      errors.name = '🔴The name of the dog can not have more than 25 characters';
     }
     if (!input.height_min) {
-      errors.height_min =
-        "🔴Enter a value for the minimum height of the breed ";
+      errors.height_min = '🔴Enter a value for the minimum height of the breed ';
     } else if (!/^[0-9]{1,2}?$/.test(input.height_min)) {
-      errors.height_min = "🔴Only numbers and maximum 2 characters";
+      errors.height_min = '🔴Only numbers and maximum 2 characters';
     } else if (input.height_min > input.height_max) {
       errors.height_min =
-        "🔴The minimum height cannot be greater than the maximum height";
+        '🔴The minimum height cannot be greater than the maximum height';
     }
     if (!input.height_max) {
-      errors.height_max =
-        "🔴Enter a value for the minimum height of the breed ";
+      errors.height_max = '🔴Enter a value for the minimum height of the breed ';
     } else if (!/^[0-9]{1,2}?$/.test(input.height_max)) {
-      errors.height_max = "🔴Only numbers and maximum 2 characters";
+      errors.height_max = '🔴Only numbers and maximum 2 characters';
     } else if (input.height_max < input.height_min) {
-      errors.height_max =
-        "🔴The maximum height cannot be less than the minimum height";
+      errors.height_max = '🔴The maximum height cannot be less than the minimum height';
     }
     if (!input.weight_min) {
-      errors.weight_min =
-        "🔴Enter a value for the minimum height of the breed ";
+      errors.weight_min = '🔴Enter a value for the minimum height of the breed ';
     } else if (!/^[0-9]{1,2}?$/.test(input.weight_min)) {
-      errors.weight_min = "🔴Only numbers and maximum 2 characters";
+      errors.weight_min = '🔴Only numbers and maximum 2 characters';
     } else if (input.weight_min > input.weight_max) {
       errors.weight_min =
-        "🔴The minimum weight cannot be greater than the maximum weight";
+        '🔴The minimum weight cannot be greater than the maximum weight';
     }
     if (!input.weight_max) {
-      errors.weight_max =
-        "🔴Enter a value for the minimum height of the breed ";
+      errors.weight_max = '🔴Enter a value for the minimum height of the breed ';
     } else if (!/^[0-9]{1,2}?$/.test(input.weight_max)) {
-      errors.weight_max = "🔴Only numbers and maximum 2 characters";
+      errors.weight_max = '🔴Only numbers and maximum 2 characters';
     } else if (input.weight_max < input.weight_min) {
-      errors.weight_max =
-        "🔴The maximum weight cannot be less than the minimum weight";
+      errors.weight_max = '🔴The maximum weight cannot be less than the minimum weight';
     }
     if (!input.life_span) {
-      errors.life_span = "🔴Enter a value for the minimum height of the breed ";
+      errors.life_span = '🔴Enter a value for the minimum height of the breed ';
     } else if (!/^[0-9]{1,2}?$/.test(input.life_span)) {
-      errors.life_span = "🔴Only numbers and maximum 2 characters";
+      errors.life_span = '🔴Only numbers and maximum 2 characters';
     }
     return errors;
   }
@@ -127,8 +120,6 @@ export default function Form() {
     ) {
       e.preventDefault();
       dispatch(postDogs(input));
-      // dispatch(axios.post('/activities'))
-      // console.log(axios.post('/activities',(input)))
       alert('successfully bred dog');
       setInput({
         name: '',
@@ -199,7 +190,7 @@ export default function Form() {
               name="height_min"
             />
             {errors.height_min && <span>{errors.height_min}</span>}
-            <p>Enter a valid email address</p>
+            <p>Enter the minimum height here</p>
           </li>
           <li>
             <label>Height Max</label>
@@ -211,7 +202,7 @@ export default function Form() {
               name="height_max"
             />
             {errors.height_max && <span>{errors.height_max}</span>}
-            <p>Your website address</p>
+            <p>Enter max height here</p>
           </li>
           <li>
             <label>Weight Min:</label>
@@ -223,7 +214,7 @@ export default function Form() {
               name="weight_min"
             />
             {errors.weight_min && <span>{errors.weight_min}</span>}
-            <p>Say something about yourself</p>
+            <p>Enter minimum weight here</p>
           </li>
           <li>
             <label>Weight Max:</label>
@@ -235,7 +226,7 @@ export default function Form() {
               name="weight_max"
             />
             {errors.weight_max && <span>{errors.weight_max}</span>}
-            <p>Say something about yourself</p>
+            <p>Enter the maximum weight here</p>
           </li>
           <li>
             <label>Life Span:</label>
@@ -247,7 +238,7 @@ export default function Form() {
               name="life_span"
             />
             {errors.life_span && <span>{errors.life_span}</span>}
-            <p>Say something about yourself</p>
+            <p>Enter life expectancy</p>
           </li>
           <li>
             <label> Image: </label>
@@ -258,8 +249,13 @@ export default function Form() {
               value={input.image}
               name="image"
             />
+
             <img src={input.image} alt="Not found" width="300px" height="200px" />
             <p>Say something about yourself</p>
+
+            <img src={input.image} alt="Not found" width="300px" height="200px" />
+            {/* {errors.image && <span>{errors.image}</span>} */}
+            <p>Enter here an image by url otherwise one will be assigned by default</p>
           </li>
           <div>
             <label>Temperaments</label>
@@ -277,11 +273,11 @@ export default function Form() {
                 })}
               </optgroup>
             </select>
-            <div className='temperament-group'>
+            <div className="temperament-group">
               {/* {errors.temperament && <p>{errors.temperament}</p>} */}
               {input.temperament.map((el) => (
                 <div className="temp-group" key={el}>
-                  <span className='temp'>{el}</span>
+                  <span className="temp">{el}</span>
                   <button className="button-delete" onClick={() => handleDelete(el)}>
                     X
                   </button>
@@ -303,15 +299,11 @@ export default function Form() {
             !input.weight_max ||
             !input.life_span ||
             !input.temperament.length ? (
-              // <button disabled type="submit">
-              //   Create!
-              // </button>
               <button disabled type="submit" className="icon-btn add-btn">
                 <div className="add-icon"></div>
                 <div className="btn-txt">Crete Dog</div>
               </button>
             ) : (
-              // <button type="submit">Create!</button>
               <button type="submit" className="icon-btn add-btn">
                 <div className="add-icon"></div>
                 <div className="btn-txt">Crete Dog</div>

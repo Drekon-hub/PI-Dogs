@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getDetail } from '../../redux/actions.js';
 import { useHistory } from 'react-router-dom';
+import Spiner from '../Spiner/Spiner.jsx';
 import styles from './DogsDetails.module.css';
 
 export default function Detail(props) {
@@ -67,6 +68,7 @@ export default function Detail(props) {
             </div>
           </div>
         ) : (
+          // <Spiner/>
           <p>Loading...</p>
         )}
       </section>
