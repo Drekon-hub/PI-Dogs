@@ -26,11 +26,16 @@ export default function SearchBar({ firstPage }) {
 
   return (
     <div>
-      <form className='searchBar'>
-        
-        <input placeholder='Search dog for breed' type='text' onChange={(e) => handleSearchInput(e)} className={styles.input} value={dog} />
-        <button type='submit' onClick={(e) => handleSubmitButton(e)}>
-          Search
+      <form className="searchBar">
+        <input
+          placeholder="Search dog for breed"
+          type="text"
+          onChange={(e) => handleSearchInput(e)}
+          className={styles.input}
+          value={dog}
+        />
+        <button className={styles.button} type="submit" onClick={(e) => handleSubmitButton(e)}>
+          🔍
         </button>
       </form>
     </div>

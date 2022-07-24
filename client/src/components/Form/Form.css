@@ -252,7 +252,35 @@ p {
   box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
   transform: translateY(-2px);
 }
-.buttonBack{
-	position: relative;
-	padding-bottom: 15px;
+.buttonBack {
+  position: relative;
+  padding-bottom: 15px;
+}
+.temperament-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column 
+}
+.temp-group {
+  width: 200px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid black;
+  border-radius: 50px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding-inline-end: 10px;
+  padding-inline-start: 10px;
+}
+.button-delete {
+  border-radius: 50px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: red;
+  color: white;
+  padding-inline: 5px;
 }

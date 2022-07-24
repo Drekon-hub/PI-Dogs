@@ -12,41 +12,54 @@ export default function Form() {
     let errors = {};
 
     if (!input.name) {
-      errors.name = '🔴Enter a Name to the breed of dogs';
+      errors.name = "🔴Enter a Name to the breed of dogs";
     } else if (!/^[A-Za-z\n -]+$/.test(input.name)) {
-      errors.name = '🔴The name must contain only letters';
+      errors.name = "🔴The name must contain only letters";
     } else if (!/^[\s\S]{0,25}$/.test(input.name)) {
-      errors.name = '🔴The name of the dog can not have more than 25 characters';
+      errors.name =
+        "🔴The name of the dog can not have more than 25 characters";
     }
     if (!input.height_min) {
-      errors.height_min = '🔴Enter a value for the minimum height of the breed ';
+      errors.height_min =
+        "🔴Enter a value for the minimum height of the breed ";
     } else if (!/^[0-9]{1,2}?$/.test(input.height_min)) {
-      errors.height_min = '🔴Only numbers and maximum 2 characters';
+      errors.height_min = "🔴Only numbers and maximum 2 characters";
+    } else if (input.height_min > input.height_max) {
+      errors.height_min =
+        "🔴The minimum height cannot be greater than the maximum height";
     }
     if (!input.height_max) {
-      errors.height_max = '🔴Enter a value for the minimum height of the breed ';
+      errors.height_max =
+        "🔴Enter a value for the minimum height of the breed ";
     } else if (!/^[0-9]{1,2}?$/.test(input.height_max)) {
-      errors.height_max = '🔴Only numbers and maximum 2 characters';
+      errors.height_max = "🔴Only numbers and maximum 2 characters";
+    } else if (input.height_max < input.height_min) {
+      errors.height_max =
+        "🔴The maximum height cannot be less than the minimum height";
     }
     if (!input.weight_min) {
-      errors.weight_min = '🔴Enter a value for the minimum height of the breed ';
+      errors.weight_min =
+        "🔴Enter a value for the minimum height of the breed ";
     } else if (!/^[0-9]{1,2}?$/.test(input.weight_min)) {
-      errors.weight_min = '🔴Only numbers and maximum 2 characters';
+      errors.weight_min = "🔴Only numbers and maximum 2 characters";
+    } else if (input.weight_min > input.weight_max) {
+      errors.weight_min =
+        "🔴The minimum weight cannot be greater than the maximum weight";
     }
     if (!input.weight_max) {
-      errors.weight_max = '🔴Enter a value for the minimum height of the breed ';
+      errors.weight_max =
+        "🔴Enter a value for the minimum height of the breed ";
     } else if (!/^[0-9]{1,2}?$/.test(input.weight_max)) {
-      errors.weight_max = '🔴Only numbers and maximum 2 characters';
+      errors.weight_max = "🔴Only numbers and maximum 2 characters";
+    } else if (input.weight_max < input.weight_min) {
+      errors.weight_max =
+        "🔴The maximum weight cannot be less than the minimum weight";
     }
     if (!input.life_span) {
-      errors.life_span = '🔴Enter a value for the minimum height of the breed ';
+      errors.life_span = "🔴Enter a value for the minimum height of the breed ";
     } else if (!/^[0-9]{1,2}?$/.test(input.life_span)) {
-      errors.life_span = '🔴Only numbers and maximum 2 characters';
+      errors.life_span = "🔴Only numbers and maximum 2 characters";
     }
-    // if (!input.temperament) {
-    //   errors.temperament = 'a';
-    // }
-
     return errors;
   }
 
@@ -245,7 +258,7 @@ export default function Form() {
               value={input.image}
               name="image"
             />
-            {errors.image && <span>{errors.image}</span>}
+            <img src={input.image} alt="Not found" width="300px" height="200px" />
             <p>Say something about yourself</p>
           </li>
           <div>
@@ -264,12 +277,14 @@ export default function Form() {
                 })}
               </optgroup>
             </select>
-            <div>
-              {errors.temperament && <p>{errors.temperament}</p>}
+            <div className='temperament-group'>
+              {/* {errors.temperament && <p>{errors.temperament}</p>} */}
               {input.temperament.map((el) => (
-                <div className="deleteTemperament" key={el}>
-                  <span>{el}</span>
-                  <button onClick={() => handleDelete(el)}>x</button>
+                <div className="temp-group" key={el}>
+                  <span className='temp'>{el}</span>
+                  <button className="button-delete" onClick={() => handleDelete(el)}>
+                    X
+                  </button>
                 </div>
               ))}
             </div>
