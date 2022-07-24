@@ -3,18 +3,14 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getDetail } from '../../redux/actions.js';
-import { useHistory } from 'react-router-dom';
-import Spiner from '../Spiner/Spiner.jsx';
 import styles from './DogsDetails.module.css';
 
 export default function Detail(props) {
   const dispatch = useDispatch();
 
-  const dogHistory = useHistory();
-
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
-  }, [dispatch]);
+  }, [dispatch, props.match.params.id]);
 
   const theDogs = useSelector((state) => state.detail);
 
@@ -30,7 +26,7 @@ export default function Detail(props) {
   return (
     <div>
       <section className={styles.modal}>
-        {theDogs.id == props.match.params.id ? (
+        {theDogs.name ? (
           <div className={styles.modal_container}>
             <Link to={'/home'}>
               <button className={styles.button}>
@@ -68,7 +64,6 @@ export default function Detail(props) {
             </div>
           </div>
         ) : (
-          // <Spiner/>
           <p>Loading...</p>
         )}
       </section>

@@ -284,3 +284,7 @@ p {
   color: white;
   padding-inline: 5px;
 }
+
+.button-delete:hover{
+  background-color: black
+}

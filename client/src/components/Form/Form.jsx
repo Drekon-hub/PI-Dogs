@@ -251,9 +251,6 @@ export default function Form() {
             />
 
             <img src={input.image} alt="Not found" width="300px" height="200px" />
-            <p>Say something about yourself</p>
-
-            <img src={input.image} alt="Not found" width="300px" height="200px" />
             {/* {errors.image && <span>{errors.image}</span>} */}
             <p>Enter here an image by url otherwise one will be assigned by default</p>
           </li>
